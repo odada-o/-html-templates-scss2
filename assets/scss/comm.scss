@@ -1,0 +1,160 @@
+@import 'variables', 'mixins', 'fonts', 'reset';
+
+// btn style
+
+// card style
+
+// list style
+
+// layout
+.wrap {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+#header {
+    height: $hdH;
+    background: $gray-600;
+}
+#main {
+    flex-grow: 1;
+    // min-height: calc(100vh - $hdH - $ftH);
+}
+#footer {
+    height: $ftH;
+    background: $gray-600;
+}
+@media screen and (min-width: 1280px) {
+    .inner {
+        padding: 0;
+    }
+}
+
+// header
+#logo {
+    position: relative;
+    z-index: 1100;
+    a {
+        display: flex;
+        align-items: center;
+        height: $hdH;
+    }
+}
+#header {
+    .inner {
+        // @include flexSpaceBetween;
+        @include flex($justify: space-between, $align: center);
+    }
+    .col-right {
+        display: flex;
+        flex-direction: row-reverse;
+    }
+    .util {
+        display: none;
+        ul {
+            display: flex;
+        }
+        .link-g {
+            display: flex;
+            align-items: center;
+            height: $hdH;
+            &::before {
+                font-family: 'Font Awesome 6 Free';
+                font-weight: 900;
+            }
+        }
+        .link-lang {
+            &::before {
+                content: '\f0ac';
+            }
+        }
+        .link-search {
+            &::before {
+                content: '\f002';
+            }
+        }
+        .link-my {
+            &::before {
+                content: '\f007';
+            }
+        }
+    }
+}
+
+.gnb-wrap {
+    .inp-burger {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 0;
+        border: none;
+        opacity: 0;
+        visibility: hidden;
+        // input이 체크됐을 때
+        &:checked {
+            // + : 형제 선택자(바로 뒤에 있는 요소)
+            & + .label-burger {
+                // input이 체크됐을 때 디자인
+                .bar {
+                    &:nth-child(1) {
+                        transform: translateY(3px) rotate(45deg);
+                    }
+                    &:nth-child(2) {
+                        display: none;
+                    }
+                    &:nth-child(3) {
+                        transform: translateY(-3px) rotate(-45deg);
+                    }
+                }
+            }
+
+            // #gnb가 보이게...
+            & ~ #gnb {
+                left: 0;
+            }
+        }
+    }
+    // input이 체크되지 않았을 때 디자인
+    .label-burger {
+        position: relative;
+        z-index: 1100;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 3px;
+        width: 70px;
+        height: 70px;
+        cursor: pointer;
+        .bar {
+            display: block;
+            width: 40px;
+            height: 5px;
+            border-radius: 3px;
+            background: $black;
+            transition: all 0.3s;
+        }
+    }
+}
+#gnb {
+    position: fixed;
+    top: 0;
+    left: 100%;
+    bottom: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding-top: 100px;
+    background: $white;
+    transition: all 0.2s;
+}
+// footer
+
+@import 'main', 'sub1';
